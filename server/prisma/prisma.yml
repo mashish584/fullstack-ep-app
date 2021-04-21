@@ -1,0 +1,3 @@
+endpoint: ${env:PRISMA_ENDPOINT}
+scheme: schema.prisma
+secret: ${env:SECRET}

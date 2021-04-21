@@ -1,0 +1,14 @@
+projects:
+  app:
+    schema: src/schema.graphql
+  database:
+    schema: prisma/prisma.yml
+    extensions:
+      codegen:
+        generates:
+          ./src/generated/prisma-client/prisma.graphql:
+            plugins:
+              - schema-ast
+          ./src/generated/types.ts:
+            - typescript
+            - typescript-resolvers
