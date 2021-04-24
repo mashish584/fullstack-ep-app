@@ -21,6 +21,8 @@
 		"@graphql-cli/codegen": "^1.17.22",
 		"@graphql-codegen/schema-ast": "^1.18.1",
 		"@graphql-codegen/typescript-resolvers": "^1.19.0",
+		"@typescript-eslint/eslint-plugin": "^4.22.0",
+		"@typescript-eslint/parser": "^4.22.0",
 		"eslint": "^7.23.0",
 		"eslint-plugin-import": "^2.22.1",
 		"husky": "^6.0.0",
