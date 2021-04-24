@@ -13,7 +13,7 @@
 		"prepare": "husky install && npx husky add .husky/pre-commit 'npm run analyze-code'"
 	},
 	"dependencies": {
-		"@prisma/client": "2.20.1",
+		"@prisma/client": "^2.21.2",
 		"eslint-config-airbnb-base": "^14.2.1",
 		"graphql-yoga": "^1.18.3"
 	},
