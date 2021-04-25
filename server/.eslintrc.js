@@ -8,6 +8,10 @@ module.exports = {
 		"import/extensions": "off",
 		"import/prefer-default-export": "off",
 		"import/order": 2,
+		"no-tabs": 0,
+		"default-case": 0,
+		"no-param-reassign": 0,
+		"array-callback-return": 0,
 		"no-unused-vars": ["error", { vars: "all", args: "none", ignoreRestSiblings: false }],
 	},
 	settings: {
