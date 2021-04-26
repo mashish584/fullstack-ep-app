@@ -8,7 +8,7 @@
 		"lint": "eslint  '**/*.ts'",
 		"lint:fix": "eslint '**/*.ts' --fix",
 		"preety": "prettier --write --config .prettierrc.json '**/*.ts'",
-		"analyze-code": "npm run preety && npm run lint:fix && npm run lint",
+		"analyze-code": "npm run lint:fix && npm run lint && npm run preety",
 		"codegen": "graphql-codegen --project database",
 		"prepare": "husky install && npx husky add .husky/pre-commit 'npm run analyze-code'"
 	},

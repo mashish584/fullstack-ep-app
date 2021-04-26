@@ -18,8 +18,8 @@ export const createUserSchema = (body: { key: string; value: string }): Array<Va
         required: true,
       };
       /**
-			 *  For password we're going to have a min and max config
-			 */
+       *  For password we're going to have a min and max config
+       */
 
       if (key === "password") {
         customConfig.min = 7;
