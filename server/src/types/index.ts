@@ -7,6 +7,7 @@ export type config = {
 	min?: number;
 	max?: number;
 	required: boolean;
+	title?: string;
 };
 
 export type validationBodyType = "text" | "email" | "password";
