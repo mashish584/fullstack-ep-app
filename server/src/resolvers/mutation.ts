@@ -1,10 +1,12 @@
+import { uuid } from "uuidv4";
+import bcrypt from "bcryptjs";
 import { signupPayload, contextType, ValidationBody } from "../types";
 import { sendMail } from "../utils/sendGrid";
 import validate from "../utils/validate";
 import { createUserSchema } from "../utils/validationSchemas";
 
 const Mutation = {
-  async createUser(parent, args, { prisma }: contextType, info): Promise<signupPayload> {
+  async createUser(parent, args, { prisma, request }: contextType, info): Promise<signupPayload> {
     const validationSchema: Array<ValidationBody> = createUserSchema(args.data);
 
     const { errors } = validate(validationSchema);
@@ -14,16 +16,25 @@ const Mutation = {
     }
 
     try {
+      const { origin } = request.request.headers;
+      const verificationCode = uuid();
+      const password = bcrypt.hashSync(args.data.password, 10);
+
+      // create user record & send account verification mail to user
       const user = await prisma.user.create({
-        data: args.data,
+        data: {
+          verificationCode,
+          password,
+          ...args.data,
+        },
       });
 
       await sendMail({
         from: "ep@mailinator.com",
         to: user.email,
-        text: "Please click below link to verify your account",
+        text: `Please click below link to verify your account.${origin}/account/${verificationCode}/?user=${user.username}`,
         subject: "Email Verification",
-        html: "<strong>Verify</strong>",
+        html: `<p>Please click below link to verify your account.</p><br/><a href="${origin}/account/${verificationCode}/?user=${user.username}">Verify Now</a>`,
       });
     } catch (err) {
       throw new Error("Server Error");
