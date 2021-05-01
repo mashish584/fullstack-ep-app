@@ -8,12 +8,13 @@
 		"lint": "eslint  '**/*.ts'",
 		"lint:fix": "eslint '**/*.ts' --fix",
 		"preety": "prettier --write --config .prettierrc.json '**/*.ts'",
-		"analyze-code": "npm run lint:fix && npm run lint && npm run preety",
+		"analyze-code": "npm run preety && npm run lint:fix && npm run lint",
 		"codegen": "graphql-codegen --project database",
 		"prepare": "husky install && npx husky add .husky/pre-commit 'npm run analyze-code'"
 	},
 	"dependencies": {
 		"@prisma/client": "^2.21.2",
+		"@sendgrid/mail": "^7.4.2",
 		"eslint-config-airbnb-base": "^14.2.1",
 		"graphql-yoga": "^1.18.3"
 	},

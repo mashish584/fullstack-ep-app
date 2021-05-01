@@ -13,7 +13,9 @@ export default (body: Array<ValidationBody>): { errors: object; values?: object 
   if (!body.length) return { errors };
 
   if (body.length) {
-    values = body.map(({ config, key, value, type }) => {
+    values = body.map(({
+      config, key, value, type,
+    }) => {
       const fieldName = config.title || firstUC(key);
       value = value?.trim();
       switch (type) {

@@ -2,6 +2,7 @@ import { prismaClientType } from "..";
 
 export type contextType = { prisma: prismaClientType; request: any };
 export type authPayload = { token: string };
+export type signupPayload = { message: string };
 
 export type config = {
   min?: number;
@@ -17,3 +18,11 @@ export interface ValidationBody {
   value: string;
   config?: config;
 }
+
+export type SendGridTemplate = {
+  to: string;
+  from: string;
+  subject: string;
+  text: string;
+  html: string;
+};
