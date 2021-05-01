@@ -15,6 +15,28 @@ const Mutation = {
       throw new Error("Please validate all inputs.");
     }
 
+    // Check for email or username existence in records
+
+    const isUsernameExist = await prisma.user.findFirst({
+      where: {
+        username: args.data.username,
+      },
+    });
+
+    if (isUsernameExist) {
+      throw new Error("Username is not available.");
+    }
+
+    const isEmailExist = await prisma.user.findFirst({
+      where: {
+        email: args.data.email,
+      },
+    });
+
+    if (isEmailExist) {
+      throw new Error("Email address is not available.");
+    }
+
     try {
       const { origin } = request.request.headers;
       const verificationCode = uuid();
