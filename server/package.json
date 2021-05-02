@@ -13,14 +13,19 @@
 		"prepare": "husky install && npx husky add .husky/pre-commit 'npm run analyze-code'"
 	},
 	"dependencies": {
-		"@prisma/client": "2.20.1",
+		"@prisma/client": "^2.21.2",
+		"@sendgrid/mail": "^7.4.2",
+		"bcryptjs": "^2.4.3",
 		"eslint-config-airbnb-base": "^14.2.1",
-		"graphql-yoga": "^1.18.3"
+		"graphql-yoga": "^1.18.3",
+		"uuidv4": "^6.2.7"
 	},
 	"devDependencies": {
 		"@graphql-cli/codegen": "^1.17.22",
 		"@graphql-codegen/schema-ast": "^1.18.1",
 		"@graphql-codegen/typescript-resolvers": "^1.19.0",
+		"@typescript-eslint/eslint-plugin": "^4.22.0",
+		"@typescript-eslint/parser": "^4.22.0",
 		"eslint": "^7.23.0",
 		"eslint-plugin-import": "^2.22.1",
 		"husky": "^6.0.0",

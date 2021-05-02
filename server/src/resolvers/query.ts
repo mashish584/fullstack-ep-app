@@ -1,5 +1,10 @@
+import { User } from "@prisma/client";
+import { contextType } from "../types";
+
 const Query = {
-  hello: (_, { name }) => `👋 ${name}`,
+  users(parent, args, { prisma }: contextType, info): Promise<User[]> {
+    return prisma.user.findMany();
+  },
 };
 
 export { Query as default };
