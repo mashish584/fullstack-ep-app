@@ -2,15 +2,13 @@ import { firstUC } from ".";
 import { ValidationBody } from "../types";
 
 function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
+  const emailValidationExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailValidationExp.test(String(email).toLowerCase());
 }
 
 export default (body: Array<ValidationBody>): { errors: object; values?: object } => {
   const errors = {};
   let values = {};
-
-  if (!body.length) return { errors };
 
   if (body.length) {
     values = body.map(({
@@ -20,10 +18,8 @@ export default (body: Array<ValidationBody>): { errors: object; values?: object 
       value = value?.trim();
       switch (type) {
         case "email":
-          if (config.required) {
-            if (value.length === 0) {
-              errors[key] = `${fieldName} is required.`;
-            }
+          if (config.required && value.length === 0) {
+            errors[key] = `${fieldName} is required.`;
           }
 
           if (!errors[key]) {
@@ -35,10 +31,8 @@ export default (body: Array<ValidationBody>): { errors: object; values?: object 
           break;
         case "password":
         case "text":
-          if (config.required) {
-            if (value.length === 0) {
-              errors[key] = `${fieldName} is required.`;
-            }
+          if (config.required && value.length === 0) {
+            errors[key] = `${fieldName} is required.`;
           }
 
           if (!errors[key]) {

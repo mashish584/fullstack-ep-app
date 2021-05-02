@@ -52,7 +52,7 @@ const Mutation = {
       });
 
       await sendMail({
-        from: "ep@mailinator.com",
+        from: process.env.SENDER_EMAIL,
         to: user.email,
         text: `Please click below link to verify your account.${origin}/account/${verificationCode}/?user=${user.username}`,
         subject: "Email Verification",
