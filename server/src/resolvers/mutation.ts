@@ -1,9 +1,14 @@
 import { uuid } from "uuidv4";
 import bcrypt from "bcryptjs";
-import { signupPayload, contextType, ValidationBody } from "../types";
+import jwt from "jsonwebtoken";
+
 import { sendMail } from "../utils/sendGrid";
 import validate from "../utils/validate";
 import { createUserSchema } from "../utils/validationSchemas";
+
+import {
+  signupPayload, contextType, ValidationBody, authPayload,
+} from "../types";
 
 const Mutation = {
   async createUser(parent, args, { prisma, request }: contextType, info): Promise<signupPayload> {
@@ -45,9 +50,9 @@ const Mutation = {
       // create user record & send account verification mail to user
       const user = await prisma.user.create({
         data: {
+          ...args.data,
           verificationCode,
           password,
-          ...args.data,
         },
       });
 
@@ -66,7 +71,7 @@ const Mutation = {
       message: "Your account successfully created.We've send you a mail for account verification",
     };
   },
-  async verifyUserEmail(parent, args, { prisma, request }: contextType, info): Promise<{ success: boolean }> {
+  async verifyUserEmail(parent, args, { prisma }: contextType, info): Promise<{ success: boolean }> {
     const { username, token } = args;
 
     try {
@@ -103,6 +108,38 @@ const Mutation = {
     } catch (err) {
       throw new Error("Server Error");
     }
+  },
+  async userLogin(parent, args, { prisma }: contextType, info): Promise<authPayload> {
+    const { id, password } = args;
+    let token;
+
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [{ email: id }, { username: id }],
+      },
+    });
+
+    // Throw error if username or email is not in records
+    if (!user) {
+      throw new Error("Credentials combination not matcheds.");
+    }
+
+    // Throw error if user account is not active
+    if (!user.isActive) {
+      throw new Error("Please verify your email account.");
+    }
+
+    // Compare password & if match create JWT else throw error
+    if (bcrypt.compareSync(password, user.password)) {
+      token = jwt.sign(user, process.env.SECRET);
+    } else {
+      throw new Error("Credentials combination not matched.");
+    }
+
+    return {
+      token,
+      user,
+    };
   },
 };
 

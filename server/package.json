@@ -18,6 +18,7 @@
 		"bcryptjs": "^2.4.3",
 		"eslint-config-airbnb-base": "^14.2.1",
 		"graphql-yoga": "^1.18.3",
+		"jsonwebtoken": "^8.5.1",
 		"uuidv4": "^6.2.7"
 	},
 	"devDependencies": {
