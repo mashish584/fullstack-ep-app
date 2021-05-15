@@ -66,6 +66,44 @@ const Mutation = {
       message: "Your account successfully created.We've send you a mail for account verification",
     };
   },
+  async verifyUserEmail(parent, args, { prisma, request }: contextType, info): Promise<{ success: boolean }> {
+    const { username, token } = args;
+
+    try {
+      // check for username existence
+      const user = await prisma.user.findFirst({
+        where: {
+          username,
+        },
+      });
+
+      if (!user) {
+        return { success: false };
+      }
+
+      /*
+        check for verificationCode from db if it's match
+        with request set it as empty
+      */
+
+      if (token === user.verificationCode) {
+        await prisma.user.update({
+          where: {
+            username,
+          },
+          data: {
+            verificationCode: null,
+            isActive: true,
+          },
+        });
+        return { success: true };
+      }
+
+      return { success: false };
+    } catch (err) {
+      throw new Error("Server Error");
+    }
+  },
 };
 
 export { Mutation as default };
