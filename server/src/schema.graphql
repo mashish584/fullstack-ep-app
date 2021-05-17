@@ -4,12 +4,15 @@ type Query {
 
 type Mutation {
   createUser(data: CreateUserInput): SignupPayload!
+  verifyUserEmail(username: String!, token: String!): VerificationPayload!
+  userLogin(id: String!, password: String): AuthPayload
 }
 
 type User {
   id: ID!
   username: String!
   email: String!
+  isActive: Boolean!
   createdAt: String!
   updatedAt: String!
 }
@@ -23,6 +26,10 @@ input CreateUserInput {
 type AuthPayload {
   token: String!
   user: User!
+}
+
+type VerificationPayload {
+  success: Boolean
 }
 
 type SignupPayload {
