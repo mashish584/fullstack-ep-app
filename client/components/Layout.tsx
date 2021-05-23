@@ -1,15 +1,18 @@
-import React from "react";
-import { ThemeProvider } from "styled-components";
+import React, { useContext } from "react";
 
-import { lightTheme } from "../utils/theme";
+import { ThemeContext } from "styled-components";
+import { Container } from "../styles/layout.style";
+import { GlobalStyle } from "../styles/global.style";
 import Meta from "./Meta";
 
-
 export default function Layout({ children }) {
+	const theme = useContext(ThemeContext);
+	console.log({ theme });
 	return (
-		<ThemeProvider theme={lightTheme}>
+		<Container bg={"#222"}>
 			<Meta />
+			<GlobalStyle />
 			{children}
-		</ThemeProvider>
+		</Container>
 	);
 }
