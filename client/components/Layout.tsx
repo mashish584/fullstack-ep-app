@@ -7,11 +7,10 @@ import Meta from "./Meta";
 
 export default function Layout({ children }) {
 	const theme = useContext(ThemeContext);
-	console.log({ theme });
 	return (
-		<Container bg={"#222"}>
+		<Container bg={theme.colors.secondary}>
 			<Meta />
-			<GlobalStyle />
+			<GlobalStyle themeColor={theme.colors.primary} />
 			{children}
 		</Container>
 	);

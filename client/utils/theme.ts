@@ -6,6 +6,7 @@ const commonThemeColors = {
 	danger: "#EB5757",
 	white: "#FFFFFF",
 	black: "#000000",
+	blackDim: "#36373C",
 };
 
 export const fonts = {
@@ -32,7 +33,7 @@ export const lightTheme = {
 		background: "#FFFFFF",
 		textColor: "#262728",
 	},
-	baseFontSize: "62.5%",
+	inputBg: "#F2F2F2",
 	fonts,
 	fontSizes,
 	spacing,
@@ -44,7 +45,6 @@ export const darkTheme = {
 		background: "#262728",
 		textColor: "#f5f5f5",
 	},
-	baseFontSize: "62.5%",
 	fonts,
 	fontSizes,
 	spacing,

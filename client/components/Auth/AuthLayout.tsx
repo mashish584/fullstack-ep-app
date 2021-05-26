@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 
-import { Container, Section } from "../styles/auth.style";
-import { BackgroundImage, Layer } from "../styles/layout.style";
+import { Container, Section } from "../../styles/auth.style";
+import { BackgroundImage, Layer } from "../../styles/layout.style";
 
 interface AuthLayoutProps {
 	content?: ReactNode;
@@ -16,7 +16,7 @@ export default function AuthLayout({ content, children }: AuthLayoutProps) {
 				<Layer opacity={0.9} />
 				{content}
 			</Section>
-			<Section className="form-section">{children}</Section>
+			<Section className="form__section">{children}</Section>
 		</Container>
 	);
 }

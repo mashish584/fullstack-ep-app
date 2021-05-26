@@ -16,6 +16,11 @@ export const latoRegular = css`
 	font-weight: ${({ theme }) => theme.fontSizes.regular};
 `;
 
+export const latoSemiBold = css`
+	${lato}
+	font-weight: ${({ theme }) => theme.fontSizes.semiBold};
+`;
+
 export const latoBold = css`
 	${lato}
 	font-weight: ${({ theme }) => theme.fontSizes.bold};
@@ -45,6 +50,11 @@ export const workSansRegular = css`
 export const workSansMedium = css`
 	${workSans}
 	font-weight: ${({ theme }) => theme.fontSizes.medium};
+`;
+
+export const workSansSemibold = css`
+	${workSans}
+	font-weight: ${({ theme }) => theme.fontSizes.semiBold};
 `;
 
 export const workSansBold = css`

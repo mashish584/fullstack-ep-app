@@ -1,25 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import { useFormik } from "formik";
-import AuthLayout from "../components/AuthLayout";
+import AuthLayout from "../components/Auth/AuthLayout";
 import { AuthFormContainer } from "../styles/auth.style";
-import { InputContainer, TextInput } from "../styles/form.style";
-
-const Content = () => (
-	<div id="content">
-		<h2>Find</h2>
-		<h2>Amazing Events</h2>
-		<p>
-			Looking for an event <br /> to be a part of. Join us now...
-		</p>
-	</div>
-);
+import { Button, InputContainer, TextInput } from "../styles/form.style";
+import AuthInfo from "../components/Auth/AuthInfo";
+import Content from "../components/Auth/Content";
 
 export default function signin() {
 	const {} = useFormik({
 		initialValues: {
 			username: "",
-			email: "",
 			password: "",
 		},
 		onSubmit: (values) => {},
@@ -27,18 +18,21 @@ export default function signin() {
 
 	return (
 		<AuthLayout content={<Content />}>
-			<h3>Welcome back to EP</h3>
-			<p>
-				New here?{" "}
-				<Link href="/signup">
-					<a>Create an account.</a>
+			<AuthFormContainer>
+				<AuthInfo heading={"Welcome back to EP"} text={"New here?"} linkText={"Create an account."} link={"/signup"} />
+				<InputContainer mb={21}>
+					<label>Username</label>
+					<TextInput />
+				</InputContainer>
+				<InputContainer mb={21}>
+					<label>Password</label>
+					<TextInput />
+				</InputContainer>
+				<Link href="/forgot-password">
+					<a className="forgot__link">Forgot your password?</a>
 				</Link>
-				<AuthFormContainer>
-					<InputContainer>
-						<TextInput />
-					</InputContainer>
-				</AuthFormContainer>
-			</p>
+				<Button>Sign In</Button>
+			</AuthFormContainer>
 		</AuthLayout>
 	);
 }
