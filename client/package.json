@@ -19,13 +19,17 @@
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "apollo-upload-client": "^15.0.0",
+    "cookie": "^0.4.1",
     "formik": "^2.2.8",
     "graphql": "^15.5.0",
+    "graphql-tag": "^2.12.4",
     "next": "10.2.0",
     "next-with-apollo": "^5.1.1",
     "react": "17.0.2",
+    "react-cookie": "^4.0.3",
     "react-dom": "17.0.2",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "yup": "^0.32.9"
   },
   "resolutions": {
     "styled-components": "^5"
