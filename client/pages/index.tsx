@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { parseCookies } from "../utils";
 
-export default function index() {
+const index = (props) => {
 	const router = useRouter();
 
 	useEffect(() => {
-		router.push("/signin");
+		const { accessToken } = parseCookies();
+		const route = accessToken ? "/home" : "/signin";
+		router.push(route);
 	}, []);
 
 	return null;
-}
+};
+
+export default index;

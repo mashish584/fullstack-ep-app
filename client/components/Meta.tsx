@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 
-export default function Meta() {
+const Meta = () => {
 	return (
 		<Head>
 			<meta charSet="UTF-8" />
@@ -13,4 +13,6 @@ export default function Meta() {
 			<title>EP - Amazing Events</title>
 		</Head>
 	);
-}
+};
+
+export default Meta;

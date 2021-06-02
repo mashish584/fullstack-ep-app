@@ -8,7 +8,7 @@ interface AuthLayoutProps {
 	children?: ReactNode;
 }
 
-export default function AuthLayout({ content, children }: AuthLayoutProps) {
+const AuthLayout = ({ content, children }: AuthLayoutProps) => {
 	return (
 		<Container>
 			<Section flex={0.65}>
@@ -19,4 +19,6 @@ export default function AuthLayout({ content, children }: AuthLayoutProps) {
 			<Section className="form__section">{children}</Section>
 		</Container>
 	);
-}
+};
+
+export default AuthLayout;

@@ -6,9 +6,7 @@ import { sendMail } from "../utils/sendGrid";
 import validate from "../utils/validate";
 import { createUserSchema } from "../utils/validationSchemas";
 
-import {
-  signupPayload, contextType, ValidationBody, authPayload,
-} from "../types";
+import { signupPayload, contextType, ValidationBody, authPayload } from "../types";
 
 const Mutation = {
   async createUser(parent, args, { prisma, request }: contextType, info): Promise<signupPayload> {
@@ -140,6 +138,51 @@ const Mutation = {
       token,
       user,
     };
+  },
+  async forgotPassword(parent, args, { prisma }: contextType, info): Promise<{ success: boolean }> {
+    const { email } = args;
+
+    try {
+      /**
+       * Check user existence in record if exist send
+       * forgot password mail & update record with new temporary password
+       *  else return  success as true
+       */
+
+      const isUserExist = await prisma.user.findFirst({
+        where: {
+          email,
+        },
+      });
+
+      if (!isUserExist) {
+        return { success: true };
+      }
+
+      const temporaryPassword = uuid().substring(-1, 7);
+
+      await prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          password: bcrypt.hashSync(temporaryPassword, 10),
+          isActive: true,
+        },
+      });
+
+      await sendMail({
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        text: `Please use ${temporaryPassword} as your temporary password.`,
+        subject: "Forgot Password",
+        html: `<p>Please use <b>${temporaryPassword}</b> as your temporary password.</p>`,
+      });
+
+      return { success: true };
+    } catch (err) {
+      throw new Error("Server Error");
+    }
   },
 };
 

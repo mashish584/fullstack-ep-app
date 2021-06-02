@@ -1,4 +1,6 @@
-export default function Content() {
+import React from "react";
+
+const Content = () => {
 	return (
 		<div id="content">
 			<h2>Find</h2>
@@ -8,4 +10,6 @@ export default function Content() {
 			</p>
 		</div>
 	);
-}
+};
+
+export default Content;

@@ -5,7 +5,8 @@ type Query {
 type Mutation {
   createUser(data: CreateUserInput): SignupPayload!
   verifyUserEmail(username: String!, token: String!): VerificationPayload!
-  userLogin(id: String!, password: String): AuthPayload
+  userLogin(id: String!, password: String): AuthPayload!
+  forgotPassword(email: String!): VerificationPayload!
 }
 
 type User {

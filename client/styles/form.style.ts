@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { workSansSemibold, workSansMedium, workSansThin } from "./font.style";
+import { buttonStyleProps } from "./types";
 import { getEm } from "./util.style";
 
 export const InputContainer = styled.div<{ width?: number | string; mt?: number; mb?: number; pt?: number; pb?: number }>`
@@ -40,7 +41,7 @@ export const TextInput = styled.input`
 	border-radius: 5px;
 `;
 
-export const Button = styled.button<{ bg?: string; radius?: number; width?: number | string; height?: number }>`
+export const Button = styled.button<buttonStyleProps>`
 	width: 100%;
 	min-height: ${({ height }) => height || "70px"};
 	background-color: ${({ theme, bg }) => bg || theme.colors.primary};

@@ -134,7 +134,7 @@ export const Section = styled.div<{ flex?: number; bg?: string; direction?: stri
 	}
 `;
 
-export const AuthFormContainer = styled.div`
+export const AuthFormContainer = styled.form`
 	position: relative;
 	z-index: 2;
 	width: 60%;

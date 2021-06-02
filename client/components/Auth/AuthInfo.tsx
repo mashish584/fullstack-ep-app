@@ -8,7 +8,7 @@ interface AuthInfoProps {
 	linkText?: string;
 }
 
-export default function AuthInfo({ heading, text, link, linkText }: AuthInfoProps) {
+const AuthInfo = ({ heading, text, link, linkText }: AuthInfoProps) => {
 	return (
 		<div className="auth__info">
 			<h3>{heading}</h3>
@@ -22,4 +22,6 @@ export default function AuthInfo({ heading, text, link, linkText }: AuthInfoProp
 			</p>
 		</div>
 	);
-}
+};
+
+export default AuthInfo;
