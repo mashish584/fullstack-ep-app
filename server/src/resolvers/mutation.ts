@@ -6,6 +6,7 @@ import { sendMail } from "../utils/sendGrid";
 import validate from "../utils/validate";
 import { createUserSchema } from "../utils/validationSchemas";
 
+
 import { signupPayload, contextType, ValidationBody, authPayload } from "../types";
 
 const Mutation = {
@@ -139,6 +140,7 @@ const Mutation = {
       user,
     };
   },
+  
   async forgotPassword(parent, args, { prisma }: contextType, info): Promise<{ success: boolean }> {
     const { email } = args;
 
