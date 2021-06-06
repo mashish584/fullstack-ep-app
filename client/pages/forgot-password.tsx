@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 
 import AuthLayout from "../components/Auth/AuthLayout";
 import AuthInfo from "../components/Auth/AuthInfo";
-import Content from "../components/Auth/Content";
 import Button from "../components/Button";
 import Error from "../components/Error";
 
@@ -38,22 +37,19 @@ export default function forgotPassword() {
 	});
 
 	return (
-		<AuthLayout content={<Content />}>
+		<AuthLayout>
 			<AuthFormContainer
 				onSubmit={(e) => {
 					e.preventDefault();
 					formik.handleSubmit();
 				}}>
-				<AuthInfo
-					heading={"Forgot your password"}
-					text={"Provide your registered email address. We will send a temporary password for you."}
-				/>
+				<AuthInfo heading={"Event Planner"} text={"Lorem ipsum dolor sit amet, consectetuer adipiscing elit."} />
 				<InputContainer mb={21}>
 					<label htmlFor="email">Email</label>
 					<TextInput type="email" id="email" name="email" onChange={formik.handleChange} value={formik.values.email} />
 					{errors.email && touched.email ? <Error message={errors.email} /> : null}
 				</InputContainer>
-				<Button type="submit" isLoading={loading}>
+				<Button type="submit" isLoading={loading} style={{ margin: "21px 0" }}>
 					Submit
 				</Button>
 			</AuthFormContainer>

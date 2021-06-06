@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { lightTheme } from "../utils/theme";
-import { workSansThin } from "./font.style";
+import { montserratRegular, montserratThin } from "./font.style";
 
 export const GlobalStyle = createGlobalStyle<{ theme: typeof lightTheme }>`
 	*,
@@ -33,9 +33,34 @@ export const GlobalStyle = createGlobalStyle<{ theme: typeof lightTheme }>`
 	}
 
 	.error__message{
-		${workSansThin}
-		font-size: 11;
+		${montserratThin}
+		font-size: 1.1rem;
 		color: ${({ theme }) => theme.colors.danger};
 		margin: 2px 0;
 	}
+
+	.link__text {
+		${montserratRegular}
+		font-size: 1.4rem;
+		text-align: center;
+		a{
+			color: ${({ theme }) => theme.colors.primary}
+		}
+	}
+
+		/* Change Autocomplete styles in Chrome*/
+		input:-webkit-autofill,
+		input:-webkit-autofill:hover, 
+		input:-webkit-autofill:focus,
+		textarea:-webkit-autofill,
+		textarea:-webkit-autofill:hover,
+		textarea:-webkit-autofill:focus,
+		select:-webkit-autofill,
+		select:-webkit-autofill:hover,
+		select:-webkit-autofill:focus {
+			box-shadow: ${({ theme }) => `0 0 0px 1000px ${theme.colors.white} inset`};
+		-webkit-box-shadow: ${({ theme }) => `0 0 0px 1000px ${theme.colors.white} inset`};
+		transition: background-color 5000s ease-in-out 0s;
+		}
+
 `;

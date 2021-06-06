@@ -1,22 +1,21 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
+import { ThemeContext } from "styled-components";
 
 import { Container, Section } from "../../styles/auth.style";
 import { BackgroundImage, Layer } from "../../styles/layout.style";
+import { lightTheme } from "../../utils/theme";
 
-interface AuthLayoutProps {
-	content?: ReactNode;
-	children?: ReactNode;
-}
+const AuthLayout = ({ children }) => {
+	const theme = useContext<typeof lightTheme>(ThemeContext);
 
-const AuthLayout = ({ content, children }: AuthLayoutProps) => {
 	return (
 		<Container>
-			<Section flex={0.65}>
-				<BackgroundImage src="https://ik.imagekit.io/imashish/ep/header-bg.4e3846cb_ryL2z_mqN.jpg" />
-				<Layer opacity={0.9} />
-				{content}
+			<Section className="form__section" flex={1}>
+				{children}
 			</Section>
-			<Section className="form__section">{children}</Section>
+			{/* <Section></Section> */}
+			<BackgroundImage src="https://ik.imagekit.io/imashish/ep/header-bg.4e3846cb_ryL2z_mqN.jpg" />
+			<Layer bg={theme.colors.white} opacity={0.96} />
 		</Container>
 	);
 };

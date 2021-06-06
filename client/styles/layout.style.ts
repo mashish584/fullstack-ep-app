@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import { absPostions, flexy } from "./mixin.style";
+import { breakPoints } from "./util.style";
 
 export const Container = styled.div<{ bg: string }>`
-	background-color: ${(props) => props.bg};
+	background: ${(props) => props.bg};
 	height: 100%;
+	padding: 0 100px;
+	@media screen and (max-width: ${breakPoints.sm}) {
+		padding: 0 22px;
+	}
 `;
 
 export const BackgroundImage = styled.div<{ src: string; resizeMode?: string }>`

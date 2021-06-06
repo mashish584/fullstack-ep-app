@@ -4,6 +4,7 @@ export const getEm = (rem, px, base = 10) => {
 };
 
 export const breakPoints = {
+	lg: "90rem",
 	md: "80rem",
 	sm: "64rem",
 };

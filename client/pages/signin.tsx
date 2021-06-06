@@ -7,14 +7,16 @@ import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 
 import AuthLayout from "../components/Auth/AuthLayout";
+import AuthInfo from "../components/Auth/AuthInfo";
+import Button from "../components/Button";
+import Error from "../components/Error";
+import LinkText from "../components/LinkText";
+
+import { handleAsync } from "../utils";
+import withAuth from "../hoc/withAuth";
+
 import { AuthFormContainer } from "../styles/auth.style";
 import { InputContainer, TextInput } from "../styles/form.style";
-import AuthInfo from "../components/Auth/AuthInfo";
-import Content from "../components/Auth/Content";
-import Button from "../components/Button";
-import { handleAsync } from "../utils";
-import Error from "../components/Error";
-import withAuth from "../hoc/withAuth";
 
 const SIGNIN_MUTATION = gql`
 	mutation userLogin($id: String!, $password: String!) {
@@ -59,13 +61,13 @@ const signin = ({ data }) => {
 	});
 
 	return (
-		<AuthLayout content={<Content />}>
+		<AuthLayout>
 			<AuthFormContainer
 				onSubmit={(e) => {
 					e.preventDefault();
 					formik.handleSubmit();
 				}}>
-				<AuthInfo heading={"Welcome back to EP"} text={"New here?"} linkText={"Create an account."} link={"/signup"} />
+				<AuthInfo heading={"Event Planner"} text={"Lorem ipsum dolor sit amet, consectetuer adipiscing elit."} />
 				<InputContainer mb={21}>
 					<label htmlFor="username">Username</label>
 					<TextInput type="text" id="username" name="username" onChange={formik.handleChange} value={formik.values.username} />
@@ -77,11 +79,12 @@ const signin = ({ data }) => {
 					{errors.password && touched.password ? <Error message={errors.password} /> : null}
 				</InputContainer>
 				<Link href="/forgot-password">
-					<a className="forgot__link">Forgot your password?</a>
+					<a className="forgot__link">Forgot Password?</a>
 				</Link>
-				<Button type="submit" isLoading={loading}>
+				<Button type="submit" isLoading={loading} style={{ marginBottom: "21px" }}>
 					Sign In
 				</Button>
+				<LinkText text={"Don't have an account yet?"} link={"/signup"} linkText={"Sign Up"} />
 			</AuthFormContainer>
 		</AuthLayout>
 	);

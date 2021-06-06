@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 
 import AuthLayout from "../components/Auth/AuthLayout";
 import AuthInfo from "../components/Auth/AuthInfo";
-import Content from "../components/Auth/Content";
 import Button from "../components/Button";
 import Error from "../components/Error";
+import LinkText from "../components/LinkText";
 
 import { InputContainer, TextInput } from "../styles/form.style";
 
@@ -49,13 +49,13 @@ export default function signup() {
 	});
 
 	return (
-		<AuthLayout content={<Content />}>
+		<AuthLayout>
 			<AuthFormContainer
 				onSubmit={(e) => {
 					e.preventDefault();
 					formik.handleSubmit();
 				}}>
-				<AuthInfo heading={"Create your account"} text={"Already have an account?"} linkText={"Signin."} link={"/signin"} />
+				<AuthInfo heading={"Event Planner"} text={"Lorem ipsum dolor sit amet, consectetuer adipiscing elit."} />
 				<InputContainer mb={21}>
 					<label htmlFor="username">Username</label>
 					<TextInput type="text" name="username" id="username" onChange={formik.handleChange} value={formik.values.username} />
@@ -71,9 +71,10 @@ export default function signup() {
 					<TextInput type="password" name="password" id="password" onChange={formik.handleChange} value={formik.values.password} />
 					{errors.password && touched.password ? <Error message={errors.password} /> : null}
 				</InputContainer>
-				<Button type="submit" isLoading={loading}>
+				<Button type="submit" isLoading={loading} style={{ margin: "21px 0" }}>
 					Sign Up
 				</Button>
+				<LinkText text={"Don't have an account."} link={"/signin"} linkText={"Sign In"} />
 			</AuthFormContainer>
 		</AuthLayout>
 	);

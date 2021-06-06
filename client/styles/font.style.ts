@@ -1,68 +1,37 @@
 import { css } from "styled-components";
 
-// Lato
+// Montserrat
 
-export const lato = css`
-	font-family: ${({ theme }) => theme.fonts.lato};
+export const montserrat = css`
+	font-family: ${({ theme }) => theme.fonts.montserrat};
 `;
 
-export const latoThin = css`
-	${lato}
+export const montserratThin = css`
+	${montserrat}
 	font-weight: ${({ theme }) => theme.fontSizes.thin};
 `;
 
-export const latoRegular = css`
-	${lato}
+export const montserratRegular = css`
+	${montserrat}
 	font-weight: ${({ theme }) => theme.fontSizes.regular};
 `;
 
-export const latoSemiBold = css`
-	${lato}
-	font-weight: ${({ theme }) => theme.fontSizes.semiBold};
-`;
-
-export const latoBold = css`
-	${lato}
-	font-weight: ${({ theme }) => theme.fontSizes.bold};
-`;
-
-export const latoBlack = css`
-	${lato}
-	font-weight: ${({ theme }) => theme.fontSizes.black};
-`;
-
-// WorkSans
-
-export const workSans = css`
-	font-family: ${({ theme }) => theme.fonts.workSans};
-`;
-
-export const workSansThin = css`
-	${workSans}
-	font-weight: ${({ theme }) => theme.fontSizes.thin};
-`;
-
-export const workSansRegular = css`
-	${workSans}
-	font-weight: ${({ theme }) => theme.fontSizes.regular};
-`;
-
-export const workSansMedium = css`
-	${workSans}
+export const montserratMedium = css`
+	${montserrat}
 	font-weight: ${({ theme }) => theme.fontSizes.medium};
 `;
 
-export const workSansSemibold = css`
-	${workSans}
+export const montserratSemiBold = css`
+	${montserrat}
 	font-weight: ${({ theme }) => theme.fontSizes.semiBold};
 `;
 
-export const workSansBold = css`
-	${workSans}
+export const montserratBold = css`
+	${montserrat}
 	font-weight: ${({ theme }) => theme.fontSizes.bold};
 `;
 
-export const workSansBlack = css`
-	${workSans}
+export const montserratBlack = css`
+	${montserrat}
 	font-weight: ${({ theme }) => theme.fontSizes.black};
 `;
