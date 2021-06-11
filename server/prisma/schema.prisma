@@ -12,9 +12,26 @@ model User {
   username  String   @unique
   email     String   @unique
   password  String
+  events Event[]
   verificationCode String?
   verificationExpirty DateTime?
   isActive Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model Event {
+  id Int @id @default(autoincrement())
+  title String @unique
+  descrption String
+  category String[]
+  location Json? 
+  eventTimestamp DateTime
+  isActive Boolean @default(true)
+  owner User @relation(fields: [ownerId], references:[id])
+  ownerId Int
+  price Float?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

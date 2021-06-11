@@ -6,7 +6,9 @@ import { sendMail } from "../utils/sendGrid";
 import validate from "../utils/validate";
 import { createUserSchema } from "../utils/validationSchemas";
 
-import { signupPayload, contextType, ValidationBody, authPayload } from "../types";
+import {
+  signupPayload, contextType, ValidationBody, authPayload,
+} from "../types";
 
 const Mutation = {
   async createUser(parent, args, { prisma, request }: contextType, info): Promise<signupPayload> {
