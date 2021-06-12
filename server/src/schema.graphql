@@ -28,7 +28,7 @@ type Location {
 type Event {
   id: ID
   title: String
-  descrption: String
+  description: String
   category: [String]
   location: Location!
   eventTimestamp: String
@@ -47,7 +47,7 @@ input CreateUserInput {
 
 input CreateEventInput {
   title: String!
-  descrption: String!
+  description: String!
   category: [String]!
   location: String!
   eventTimestamp: String!

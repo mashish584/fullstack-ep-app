@@ -29,5 +29,8 @@ server.start(
       origin: "http://localhost:3000",
     },
   },
-  ({ port }) => console.log(`Server is running on port ${port} 😁`),
+  ({ port }) => console.log(`
+      Server is running on port ${port} 🚀
+      Run npx prisma studio for viewing records in interactive table
+    `),
 );

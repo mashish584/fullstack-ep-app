@@ -12,6 +12,7 @@ module.exports = {
     "default-case": 0,
     "no-param-reassign": 0,
     "array-callback-return": 0,
+    "no-plusplus": 0,
     "no-unused-vars": ["error", { vars: "all", args: "none", ignoreRestSiblings: false }],
     "max-len": 0,
   },

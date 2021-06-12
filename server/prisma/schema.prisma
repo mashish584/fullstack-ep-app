@@ -24,7 +24,7 @@ model User {
 model Event {
   id Int @id @default(autoincrement())
   title String @unique
-  descrption String
+  description String
   category String[]
   location Json? 
   eventTimestamp DateTime
