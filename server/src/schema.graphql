@@ -7,6 +7,7 @@ type Mutation {
   verifyUserEmail(username: String!, token: String!): VerificationPayload!
   userLogin(id: String!, password: String): AuthPayload!
   forgotPassword(email: String!): VerificationPayload!
+  createEvent(data: CreateEventInput): Event!
 }
 
 type User {
@@ -18,10 +19,40 @@ type User {
   updatedAt: String!
 }
 
+type Location {
+  lat: String!
+  lng: String!
+  address: String!
+}
+
+type Event {
+  id: ID
+  title: String
+  descrption: String
+  category: [String]
+  location: Location!
+  eventTimestamp: String
+  isActive: Boolean
+  owner: User
+  price: Float
+  createdAt: String
+  updatedAt: String
+}
+
 input CreateUserInput {
   username: String!
   email: String!
   password: String!
+}
+
+input CreateEventInput {
+  title: String!
+  descrption: String!
+  category: [String]!
+  location: String!
+  eventTimestamp: String!
+  isActive: Boolean
+  price: Float
 }
 
 type AuthPayload {
