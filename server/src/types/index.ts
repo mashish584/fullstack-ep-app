@@ -7,14 +7,6 @@ export type config = {
   title?: string;
 };
 
-export type validationBodyType = "text" | "email" | "password";
-export interface ValidationBody {
-  type: "text" | "email" | "password";
-  key: string;
-  value: string;
-  config?: config;
-}
-
 export type SendGridTemplate = {
   to: string;
   from: string;

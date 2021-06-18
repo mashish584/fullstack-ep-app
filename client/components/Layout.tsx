@@ -1,15 +1,18 @@
 import React from "react";
-import { ThemeProvider } from "styled-components";
 
-import { lightTheme } from "../utils/theme";
+import { Container } from "../styles/layout.style";
+import { GlobalStyle } from "../styles/global.style";
+
 import Meta from "./Meta";
 
-
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
 	return (
-		<ThemeProvider theme={lightTheme}>
+		<Container>
 			<Meta />
+			<GlobalStyle />
 			{children}
-		</ThemeProvider>
+		</Container>
 	);
-}
+};
+
+export default Layout;

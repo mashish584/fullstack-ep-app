@@ -17,9 +17,11 @@
 		"@sendgrid/mail": "^7.4.2",
 		"bcryptjs": "^2.4.3",
 		"eslint-config-airbnb-base": "^14.2.1",
+		"faker": "^5.5.3",
 		"graphql-yoga": "^1.18.3",
 		"jsonwebtoken": "^8.5.1",
-		"uuidv4": "^6.2.7"
+		"uuidv4": "^6.2.7",
+		"yup": "^0.32.9"
 	},
 	"devDependencies": {
 		"@graphql-cli/codegen": "^1.17.22",
