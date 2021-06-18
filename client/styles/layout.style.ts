@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { absPostions, flexy } from "./mixin.style";
 import { breakPoints } from "./util.style";
 
-export const Container = styled.div<{ bg: string }>`
-	background: ${(props) => props.bg};
+export const Container = styled.div`
+	background: ${({ theme }) => theme.colors.white};
 	height: 100%;
 	padding: 0 100px;
 	@media screen and (max-width: ${breakPoints.sm}) {

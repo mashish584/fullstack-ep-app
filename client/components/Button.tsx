@@ -7,12 +7,8 @@ interface ButtonProps extends buttonStyleProps, React.ButtonHTMLAttributes<HTMLB
 	isLoading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ children, ...props }, ref) => {
-	return (
-		<ButtonContainer {...props} ref={ref}>
-			{props.isLoading ? <Loader /> : children}
-		</ButtonContainer>
-	);
-});
+const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+	return <ButtonContainer {...props}>{props.isLoading ? <Loader /> : children}</ButtonContainer>;
+};
 
 export default Button;

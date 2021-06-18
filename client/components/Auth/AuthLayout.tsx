@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
 import { Container, Section } from "../../styles/auth.style";

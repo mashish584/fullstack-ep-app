@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import { lightTheme } from "../utils/theme";
 import { montserratRegular, montserratThin } from "./font.style";
 
-export const GlobalStyle = createGlobalStyle<{ theme: typeof lightTheme }>`
+export const GlobalStyle = createGlobalStyle`
 	*,
 	html,
 	body{
