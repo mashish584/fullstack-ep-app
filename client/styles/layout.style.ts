@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { absPostions, flexy } from "./mixin.style";
 import { breakPoints } from "./util.style";
 
-export const Container = styled.div`
+export const Container = styled.div<{ ph?: number }>`
 	background: ${({ theme }) => theme.colors.white};
 	height: 100%;
-	padding: 0 100px;
+	padding: ${({ ph }) => `0 ${ph}px`};
 	@media screen and (max-width: ${breakPoints.sm}) {
-		padding: 0 22px;
+		padding: ${({ ph }) => `0 ${ph ? 22 : 0}px`};
 	}
 `;
 

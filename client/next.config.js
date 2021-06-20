@@ -13,6 +13,6 @@ module.exports = {
 		...env,
 	},
 	images: {
-		domains: ["ik.imagekit.io"],
+		domains: ["ik.imagekit.io", "unsplash.it"],
 	},
 };

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { montserratBold, montserratRegular } from "./font.style";
+import { montserratBoldAlt, montserratRegularAlt } from "./font.style";
 import { flexy } from "./mixin.style";
 import { breakPoints, getEm } from "./util.style";
 
@@ -17,12 +17,12 @@ export const Container = styled.div`
 			z-index: 2;
 			margin-bottom: 4.4em;
 			h3 {
-				${montserratBold}
+				${montserratBoldAlt}
 				font-size: 6.4rem;
 				margin-bottom: ${getEm(6.4, 20)};
 			}
 			p {
-				${montserratRegular}
+				${montserratRegularAlt}
 				font-size: 2rem;
 				color: ${({ theme }) => theme.colors.blackDim};
 				line-height: 2.8rem;
@@ -32,7 +32,7 @@ export const Container = styled.div`
 			}
 		}
 		.forgot__link {
-			${montserratRegular}
+			${montserratRegularAlt}
 			font-size: 1.4rem;
 			color: ${({ theme }) => theme.colors.blackDim};
 			opacity: 0.9;

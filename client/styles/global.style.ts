@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import { montserratRegular, montserratThin } from "./font.style";
+import { montserratRegularAlt, montserratThinAlt } from "./font.style";
+import { flexy } from "./mixin.style";
 
 export const GlobalStyle = createGlobalStyle`
 	*,
@@ -19,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 
 	html{
 		font-size: 62.5%;
-
 	}
 
 	*:disabled{
@@ -32,19 +32,42 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	.error__message{
-		${montserratThin}
+		${montserratThinAlt}
 		font-size: 1.1rem;
 		color: ${({ theme }) => theme.colors.danger};
 		margin: 2px 0;
 	}
 
 	.link__text {
-		${montserratRegular}
+		${montserratRegularAlt}
 		font-size: 1.4rem;
 		text-align: center;
 		a{
 			color: ${({ theme }) => theme.colors.primary}
 		}
+	}
+
+	.slick__arrow_container{
+		width: 10rem;
+		${flexy}
+		justify-content: space-between;
+		button{
+			width: 40px;
+			height: 40px;
+			background-color: ${({ theme }) => theme.colors.white};
+			border-radius: 50%;
+			${flexy}
+			justify-content: center;
+			svg{
+				width: 28px;
+				height: 20px;
+			}
+		}
+	}
+
+	.transparent__button{
+		border:none;
+		background-color: transparent;
 	}
 
 		/* Change Autocomplete styles in Chrome*/

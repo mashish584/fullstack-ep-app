@@ -3,7 +3,14 @@
  */
 export type buttonStyleProps = {
 	bg?: string;
-	radius?: number;
-	width?: number | string;
+	radius?: string;
+	width?: string;
 	height?: string;
+	showArrow?: boolean;
+	mt?: string;
+	mb?: string;
+	ml?: string;
+	mr?: string;
 };
+
+export type EventCardStyleProps = { width: string; height: string };

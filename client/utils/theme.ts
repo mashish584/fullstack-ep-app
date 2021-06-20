@@ -15,6 +15,7 @@ type colorTypes = {
 };
 
 type fontSizeTypes = {
+	light: number;
 	thin: number;
 	regular: number;
 	medium: number;
@@ -28,6 +29,7 @@ declare module "styled-components" {
 		colors: colorTypes;
 		inputBg: string;
 		fonts: {
+			montserrat_alt: string;
 			montserrat: string;
 		};
 		fontSizes: fontSizeTypes;
@@ -47,10 +49,12 @@ const commonThemeColors = {
 };
 
 export const fonts = {
-	montserrat: "'Montserrat Alternates', sans-serif",
+	montserrat: "'Montserrat', sans-serif",
+	montserrat_alt: "'Montserrat Alternates', sans-serif",
 };
 
 export const fontSizes = {
+	light: 100,
 	thin: 300,
 	regular: 400,
 	medium: 500,

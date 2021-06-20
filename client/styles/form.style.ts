@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { montserratMedium, montserratSemiBold } from "./font.style";
+import { montserratMediumAlt, montserratSemiBold, montserratSemiBoldAlt } from "./font.style";
+import { flexy } from "./mixin.style";
 import { buttonStyleProps } from "./types";
 import { getEm } from "./util.style";
 
@@ -21,7 +22,7 @@ export const InputContainer = styled.div<{ width?: number | string; mt?: number;
 	}}
 
 	label {
-		${montserratMedium}
+		${montserratMediumAlt}
 		display: inline-block;
 		font-size: 1.5rem;
 		margin-bottom: ${getEm(1.5, 13)};
@@ -31,7 +32,7 @@ export const InputContainer = styled.div<{ width?: number | string; mt?: number;
 export const TextInput = styled.input`
 	width: 100%;
 	min-height: 70px;
-	${montserratMedium}
+	${montserratMediumAlt}
 	font-size: 1.8rem;
 	padding-left: ${getEm(1.8, 15)};
 	padding-top: ${getEm(1.8, 10)};
@@ -42,14 +43,22 @@ export const TextInput = styled.input`
 `;
 
 export const Button = styled.button<buttonStyleProps>`
-	width: 100%;
+	width: ${({ width }) => width || "100%"};
 	height: ${({ height }) => height || "70px"};
 	background-color: ${({ theme, bg }) => bg || theme.colors.primary};
-	${montserratSemiBold}
+	${montserratSemiBoldAlt}
 	font-size: 2.4rem;
-	padding: ${getEm(2.4, 15)};
+	padding: 0 2.2rem;
 	border: none;
 	border-radius: ${({ radius }) => radius || "10px"};
 	color: ${({ theme }) => theme.colors.white};
 	cursor: pointer;
+	margin-top: ${({ mt }) => mt};
+
+	.button__content {
+		${flexy};
+		justify-content: ${({ showArrow }) => (showArrow ? "space-between" : "space-evenly")};
+		${montserratSemiBold}
+		font-size: 1.8rem;
+	}
 `;
