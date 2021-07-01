@@ -1,13 +1,34 @@
 import styled from "styled-components";
-import { montserratBold, montserratRegular, montserratLight, montserratSemiBoldAlt, montserratRegularAlt } from "./font.style";
+import {
+	montserratBold,
+	montserratRegular,
+	montserratLight,
+	montserratSemiBoldAlt,
+	montserratRegularAlt,
+	montserratBoldAlt,
+} from "./font.style";
 import { flexy } from "./mixin.style";
 import { EventCardStyleProps } from "./types";
+import { flexWidth } from "./util.style";
 
 export const EventInfoContainer = styled.div`
+	width: 80%;
 	.timestamp {
 		${montserratRegular};
 		font-size: 1.3rem;
 		color: ${({ theme }) => theme.colors.white};
+	}
+
+	.location {
+		${montserratLight}
+		color: ${({ theme }) => theme.colors.white};
+		margin-top: 1.2rem;
+		font-size: 1.1rem;
+		${flexy}
+		align-items: flex-start;
+		span {
+			margin-left: 10px;
+		}
 	}
 
 	h2 {
@@ -30,7 +51,29 @@ export const EventInfoContainer = styled.div`
 			font-size: 2.4rem;
 		}
 		p {
+			${montserratRegular}
 			font-size: 1.2rem;
+		}
+	}
+
+	&.event__light_card {
+		h2 {
+			font-size: 2.4rem;
+			color: ${({ theme }) => theme.colors.secondary};
+			margin-bottom: 5px;
+		}
+		p {
+			${montserratRegular}
+		}
+		.location {
+			width: 70%;
+			color: ${({ theme }) => theme.colors.secondary};
+			${flexy}
+			align-items: flex-start;
+			span {
+				opacity: 0.83;
+				margin-left: 10px;
+			}
 		}
 	}
 `;
@@ -84,10 +127,99 @@ export const EventDarkCard = styled.div<EventCardStyleProps>`
 	.card__footer {
 		${flexy}
 		justify-content: space-between;
-		.price {
-			${montserratBold}
-			font-size: 2.4rem;
-			color: ${({ theme }) => theme.colors.white};
+	}
+`;
+
+export const Price = styled.span`
+	${montserratBold}
+	font-size: 2.4rem;
+	color: ${({ theme }) => theme.colors.white};
+`;
+
+export const EventLightCard = styled.div`
+	flex-basis: ${flexWidth(3, 1.5)};
+	height: 400px;
+	margin: 1.5%;
+	margin-left: 0;
+	border-radius: 10px;
+	background-color: ${({ theme }) => theme.colors.white};
+	overflow: hidden;
+	.top_content {
+		position: relative;
+		height: 240px;
+		padding: 22px;
+		${flexy}
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		.heart_icon {
+			position: relative;
+			align-self: flex-start;
+			margin-left: auto;
 		}
+		.host__info {
+			position: relative;
+		}
+	}
+
+	.bottom_content {
+		position: relative;
+		padding: 22px;
+		.details {
+			${flexy}
+			justify-content: space-between;
+			margin-bottom: 1.9rem;
+		}
+		.ts_card {
+			${flexy}
+			flex-direction: column;
+			justify-content: center;
+			width: 51px;
+			height: 67px;
+			border-radius: 5px;
+			border: ${({ theme }) => `1px solid ${theme.colors.darkGray}`};
+			span {
+				${montserratBold}
+				font-size: 2.4rem;
+				opacity: 0.83;
+				&:last-of-type {
+					font-size: 1.4rem;
+				}
+			}
+		}
+		.footer {
+			${flexy}
+			justify-content: space-between;
+			.price {
+				color: ${({ theme }) => theme.colors.secondary};
+			}
+		}
+	}
+
+	@media screen and (min-width: 90rem) {
+		flex-basis: ${flexWidth(4, 1.5)};
+		height: 400px;
+		margin: 1.5%;
+		margin-left: 0;
+	}
+`;
+
+export const AttendeesContainer = styled.div`
+	${flexy}
+	img {
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border: 2px solid ${({ theme }) => theme.colors.white};
+		margin-left: -15px;
+		&:first-of-type {
+			margin-left: 0;
+		}
+	}
+	a {
+		${montserratBoldAlt}
+		font-size: 1.1rem;
+		color: ${({ theme }) => theme.colors.secondary};
+		text-decoration: none;
 	}
 `;

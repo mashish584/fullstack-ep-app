@@ -1,6 +1,6 @@
 type Query {
   users: [User!]
-  events(query: String, skip: Int, take: Int): [Event!]!
+  events(query: String, skip: Int, take: Int): EventPagination!
 }
 
 type Mutation {
@@ -38,6 +38,11 @@ type Event {
   price: Float
   createdAt: String
   updatedAt: String
+}
+
+type EventPagination {
+  count: Int!
+  events: [Event!]!
 }
 
 input CreateUserInput {

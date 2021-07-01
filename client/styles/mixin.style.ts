@@ -8,15 +8,10 @@ export const absPostions = css<{ top?: number; bottom?: number; left?: number; r
 	right: ${(props) => props.right || 0};
 `;
 
-export const flexBasis = css<{ flexBasis?: number }>`
-	flex-basis: ${(props) => props.flexBasis};
-`;
-
 export const flexy = css<{ direction?: string; wrap?: boolean; alignItems?: string; justifyContent?: string }>`
 	display: flex;
 	flex-direction: ${(props) => props.direction || "row"};
 	flex-wrap: ${(props) => (props.wrap ? "wrap" : "nowrap")};
 	align-items: ${(props) => props.alignItems || "center"};
 	justify-content: ${(props) => props.justifyContent};
-	${flexBasis}
 `;

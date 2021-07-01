@@ -11,7 +11,7 @@ type HostProps = {
 
 const Host: React.FC<HostProps> = (props) => {
 	return (
-		<EventHostContainer>
+		<EventHostContainer className="host__info">
 			<div className="profile_image">
 				<Image src={props.src} width={"100%"} height={"100%"} layout="fixed" />
 			</div>

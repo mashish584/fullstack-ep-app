@@ -70,6 +70,12 @@ export const GlobalStyle = createGlobalStyle`
 		background-color: transparent;
 	}
 
+	.pagination_container{
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
 		/* Change Autocomplete styles in Chrome*/
 		input:-webkit-autofill,
 		input:-webkit-autofill:hover, 

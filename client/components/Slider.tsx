@@ -52,7 +52,7 @@ const Slider = React.forwardRef<Ref, SliderProps>(({ children, settings, variant
 		} else {
 			setSliderSettings((config) => ({
 				...config,
-				slidesToShow: 5,
+				slidesToShow: 3,
 				slidesToScroll: 3,
 				infinite: false,
 				variableWidth: true,

@@ -8,3 +8,5 @@ export const breakPoints = {
 	md: "80rem",
 	sm: "64rem",
 };
+
+export const flexWidth = (count, margin = 0.5) => `${(100 - count * (margin * 1)) / count}%`;

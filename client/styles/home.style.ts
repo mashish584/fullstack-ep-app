@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import { montserratBold, montserratSemiBold } from "./font.style";
+import { montserratBold, montserratMedium, montserratSemiBold } from "./font.style";
 import { flexy } from "./mixin.style";
 
 export const HomePageContainer = styled.div`
 	background-color: ${({ theme }) => theme.colors.lightBg};
+	padding-bottom: 5rem;
+	overflow-x: hidden;
 	section {
 		padding: 0 100px;
 		margin: 7.5rem 0;
@@ -76,5 +78,28 @@ export const SectionHeading = styled.h3`
 		background: ${({ theme }) => theme.colors.primary};
 		bottom: -15px;
 		left: 0;
+	}
+`;
+
+export const EventCategoryContainer = styled.div`
+	margin-bottom: 5.6rem;
+	button {
+		${montserratMedium}
+		font-size: 1.8rem;
+		color: ${({ theme }) => theme.colors.darkGray};
+		margin-right: 3.4rem;
+		&.active {
+			color: ${({ theme }) => theme.colors.secondary};
+		}
+	}
+`;
+
+export const EventListContainer = styled.div`
+	${flexy}
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	max-width: 1440px;
+	> div {
+		width: 100%;
 	}
 `;
