@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
-import EventInfo from "./EventInfo";
-import Host from "./Host";
 import HeartIcon from "../Icons/HeartIcon";
 
 import { EventDarkCard as CardContainer, Price } from "../../styles/event.style";
 import { BackgroundImage, Layer } from "../../styles/layout.style";
 import { EventCardStyleProps } from "../../styles/types";
 import { SubHeading } from "../../styles/home.style";
+import Host from "./Host";
+import EventInfo from "./EventInfo";
 
 type EventDarkCardProp = {} & EventCardStyleProps;
 
-const EventDarkCard: React.FC<EventCardStyleProps> = ({ width, height }) => {
+const EventDarkCard: React.FC<EventDarkCardProp> = ({ width, height }) => {
 	const theme = useContext(ThemeContext);
+	console.log({ theme });
 
 	return (
 		<CardContainer width={width} height={height}>

@@ -13,7 +13,7 @@ const VERIFY_EMAIL_MUTATION = gql`
 `;
 
 const VerifyEmail = () => {
-	const [onEmailVerify, { loading }] = useMutation(VERIFY_EMAIL_MUTATION);
+	const [onEmailVerify] = useMutation(VERIFY_EMAIL_MUTATION);
 
 	const verifyEmail = handleAsync(async () => {
 		const { user, token } = Router.router.query;

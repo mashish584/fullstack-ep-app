@@ -15,7 +15,9 @@ const Query = {
 
     if (args.query && IsJsonString(args.query)) {
       const query: Prisma.EventWhereInput = {};
-      const { search, category } = JSON.parse(args.query) || {};
+      const {
+        search, category, upcoming, featured,
+      } = JSON.parse(args.query) || {};
 
       if (search) {
         query.title = {
@@ -27,6 +29,20 @@ const Query = {
         query.category = {
           has: category,
         };
+      }
+
+      if (upcoming) {
+        query.eventTimestamp = {
+          gt: new Date(),
+        };
+        options.take = 10;
+      }
+
+      if (featured) {
+        query.isFeatured = {
+          equals: true,
+        };
+        options.take = 3;
       }
 
       options.where = query;
@@ -45,6 +61,15 @@ const Query = {
       count,
       events,
     };
+  },
+  eventDetail(parent, args, { prisma }: contextType, info): Promise<Event> {
+    if (!args.slug) throw new Error("Please provide event slug.");
+
+    return prisma.event.findFirst({
+      where: {
+        title: args.slug,
+      },
+    });
   },
 };
 

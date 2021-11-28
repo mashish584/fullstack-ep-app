@@ -9,7 +9,7 @@ import {
 } from "./font.style";
 import { flexy } from "./mixin.style";
 import { EventCardStyleProps } from "./types";
-import { flexWidth } from "./util.style";
+import { breakPoints, flexWidth } from "./util.style";
 
 export const EventInfoContainer = styled.div`
 	width: 80%;
@@ -33,13 +33,13 @@ export const EventInfoContainer = styled.div`
 
 	h2 {
 		${montserratBold}
-		font-size: 7.2rem;
+		font-size: 4.2rem;
 		color: ${({ theme }) => theme.colors.white};
 	}
 
 	p {
 		${montserratLight}
-		font-size: 2.4rem;
+		font-size: 2rem;
 		color: ${({ theme }) => theme.colors.white};
 	}
 
@@ -107,6 +107,8 @@ export const EventDarkCard = styled.div<EventCardStyleProps>`
 	height: ${({ height }) => height};
 	padding: 30px 22px 20px;
 	border-radius: 15px;
+	margin-right: 22px;
+	border: 1px solid #a9a9a9;
 	overflow: hidden;
 	${flexy}
 	flex-direction: column;
@@ -138,12 +140,13 @@ export const Price = styled.span`
 
 export const EventLightCard = styled.div`
 	flex-basis: ${flexWidth(3, 1.5)};
-	height: 400px;
+	min-height: 400px;
 	margin: 1.5%;
 	margin-left: 0;
 	border-radius: 10px;
 	background-color: ${({ theme }) => theme.colors.white};
 	overflow: hidden;
+	cursor: pointer;
 	.top_content {
 		position: relative;
 		height: 240px;
@@ -196,11 +199,15 @@ export const EventLightCard = styled.div`
 		}
 	}
 
-	@media screen and (min-width: 90rem) {
-		flex-basis: ${flexWidth(4, 1.5)};
-		height: 400px;
+	@media screen and (max-width: ${breakPoints.xs}) {
+		flex-basis: ${flexWidth(2, 1.5)};
 		margin: 1.5%;
 		margin-left: 0;
+	}
+
+	@media screen and (max-width: ${breakPoints.xss}) {
+		flex-basis: ${flexWidth(1, 0)};
+		margin: 1.5% 0;
 	}
 `;
 

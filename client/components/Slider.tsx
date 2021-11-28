@@ -1,29 +1,25 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import SlickSlider, { Settings } from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SliderType from "react-slick";
-import { SlickPaginationContainer, SlickPaging } from "../styles/slick.style";
 
-const sliderConfig: Settings = {
-	dots: true,
-	infinite: true,
-	speed: 500,
-	slidesToShow: 1,
-	slidesToScroll: 1,
-};
+import { SlickPaginationContainer, SlickPaging } from "../styles/slick.style";
+import { fullSCreenSlider, responsiveContentSlider } from "../utils/slick-config";
 
 type SliderProps = {
 	variant: "fullScreen" | "contentSlide";
 	settings?: Settings;
 	children: React.ReactNode;
+	hidePagination?: boolean;
+	customConfig?: Settings;
 };
 
-type Ref = SliderType;
+type Ref = SlickSlider;
 
-const Slider = React.forwardRef<Ref, SliderProps>(({ children, settings, variant }, ref) => {
-	const [sliderSettings, setSliderSettings] = useState(sliderConfig);
+const Slider = React.forwardRef<Ref, SliderProps>(({ children, settings, variant, ...props }, ref) => {
+	const [renderSlider, setRenderSlider] = useState(false);
+	const sliderSettings = useRef<Settings | null>();
 
 	const AppendDots = useCallback(
 		(dots) => (
@@ -37,34 +33,33 @@ const Slider = React.forwardRef<Ref, SliderProps>(({ children, settings, variant
 	const CustomPaging = (index) => <SlickPaging />;
 
 	useEffect(() => {
-		if (settings) {
-			setSliderSettings({ ...sliderSettings, ...settings });
-		}
-
 		if (variant === "fullScreen") {
-			setSliderSettings((config) => ({
-				...config,
+			sliderSettings.current = {
+				...fullSCreenSlider,
 				appendDots: AppendDots,
 				customPaging: CustomPaging,
-				autoplay: true,
-				autoplaySpeed: 7000,
-			}));
+				...props.customConfig,
+			};
+
+			if (props.hidePagination) {
+				sliderSettings.current.dots = false;
+			}
 		} else {
-			setSliderSettings((config) => ({
-				...config,
-				slidesToShow: 3,
-				slidesToScroll: 3,
-				infinite: false,
-				variableWidth: true,
-				dots: false,
-			}));
+			sliderSettings.current = {
+				...responsiveContentSlider,
+				...props.customConfig,
+			};
 		}
+
+		setRenderSlider(true);
 	}, []);
 
 	return (
-		<SlickSlider ref={ref} {...sliderSettings}>
-			{children}
-		</SlickSlider>
+		renderSlider && (
+			<SlickSlider ref={ref} {...sliderSettings.current}>
+				{children}
+			</SlickSlider>
+		)
 	);
 });
 

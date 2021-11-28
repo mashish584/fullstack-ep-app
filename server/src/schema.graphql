@@ -1,6 +1,9 @@
+scalar Upload
+
 type Query {
   users: [User!]
   events(query: String, skip: Int, take: Int): EventPagination!
+  eventDetail(slug: String!): Event!
 }
 
 type Mutation {
@@ -8,14 +11,31 @@ type Mutation {
   verifyUserEmail(username: String!, token: String!): VerificationPayload!
   userLogin(id: String!, password: String): AuthPayload!
   forgotPassword(email: String!): VerificationPayload!
-  createEvent(data: CreateEventInput): Event!
+  createEvent(data: CreateEventInput): Event
+  uploadEventMedia(file: Upload!, eventId: Int!): Media!
+  updateProfile(data: UpdateUserInput): User!
+  bookEvent(event: String!): BookingPayload!
+  createStripeCustomer: CreateCustomerPayload!
+  addPaymentCard: AddPaymentCardPayload!
 }
 
 type User {
   id: ID!
+  fullname: String!
   username: String!
   email: String!
+  bio: String!
+  profile: String!
   isActive: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Media {
+  id: ID!
+  link: String!
+  thumbnail: String!
+  event: Event
   createdAt: String!
   updatedAt: String!
 }
@@ -34,7 +54,9 @@ type Event {
   location: Location!
   eventTimestamp: String
   isActive: Boolean
+  isFeatured: Boolean
   owner: User
+  medias: [Media]
   price: Float
   createdAt: String
   updatedAt: String
@@ -49,6 +71,15 @@ input CreateUserInput {
   username: String!
   email: String!
   password: String!
+}
+
+input UpdateUserInput {
+  username: String
+  fullname: String
+  email: String
+  password: String
+  bio: String
+  profile: Upload
 }
 
 input CreateEventInput {
@@ -72,4 +103,17 @@ type VerificationPayload {
 
 type SignupPayload {
   message: String!
+}
+
+type BookingPayload {
+  event: Event!
+  message: String!
+}
+
+type CreateCustomerPayload {
+  message: String!
+}
+
+type AddPaymentCardPayload {
+  source: String!
 }

@@ -1,5 +1,5 @@
 const env = {
-	ENDPOINT: process.env.IS_DEV === "true" ? "http://localhost:4000" : "http://localhost:3000/graphql",
+	ENDPOINT: "http://localhost:4000",
 };
 
 module.exports = {
@@ -13,6 +13,6 @@ module.exports = {
 		...env,
 	},
 	images: {
-		domains: ["ik.imagekit.io", "unsplash.it"],
+		domains: ["ik.imagekit.io", "unsplash.it", "images.pexels.com"],
 	},
 };

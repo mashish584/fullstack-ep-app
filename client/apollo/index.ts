@@ -1,4 +1,5 @@
 import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
+import { GraphQLClient } from "graphql-request";
 import { createUploadLink } from "apollo-upload-client";
 import { onError } from "@apollo/link-error";
 import withApollo from "next-with-apollo";
@@ -33,5 +34,7 @@ function createClient({ headers, initialState }) {
 		connectToDevTools: process.browser,
 	});
 }
+
+export const apolloServerRequest = new GraphQLClient(process.env.ENDPOINT);
 
 export default withApollo(createClient);

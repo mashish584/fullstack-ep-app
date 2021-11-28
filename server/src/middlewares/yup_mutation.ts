@@ -20,7 +20,6 @@ export const yupMutationMiddleware = {
         }
       }
     }
-
     return resolve(parent, args, ctx, info);
   },
 };

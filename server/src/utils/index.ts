@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import { promisify } from "es6-promisify";
+import streamToBuffer from "stream-to-buffer";
 
 export const printObject = (data: object) => JSON.stringify(data, null, 2);
 
@@ -16,11 +18,14 @@ export const IsJsonString = (str) => {
   return true;
 };
 
-export const getUserId = (request, requireAuth = true) => {
-  const header = request.request ? request.request.headers.authorization : request.connection.context.Authorization;
+export const getUserId = ({ request, connection }, requireAuth = true) => {
+  let token = request ? request.cookies.accessToken : connection.context.accessToken;
+  // If token not available check in authorization
+  if (!token && request?.headers?.authorization) {
+    token = request.headers.authorization.replace("Bearer ", "");
+  }
 
-  if (header) {
-    const token = header.replace("Bearer ", "");
+  if (token) {
     const decoded: any = jwt.verify(token, process.env.SECRET);
     return decoded;
   }
@@ -31,3 +36,5 @@ export const getUserId = (request, requireAuth = true) => {
 
   return null;
 };
+
+export const S2B = promisify(streamToBuffer);

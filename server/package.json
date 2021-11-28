@@ -1,40 +1,48 @@
 {
-	"name": "graphql-boilerplate",
-	"version": "1.0.0",
-	"main": "index.js",
-	"license": "MIT",
-	"scripts": {
-		"start": "tsc && nodemon src/index.ts",
-		"lint": "eslint  '**/*.ts'",
-		"lint:fix": "eslint '**/*.ts' --fix",
-		"preety": "prettier --write --config .prettierrc.json '**/*.ts'",
-		"analyze-code": "npm run preety && npm run lint:fix && npm run lint",
-		"codegen": "graphql-codegen --project database",
-		"prepare": "husky install && npx husky add .husky/pre-commit 'npm run analyze-code'"
-	},
-	"dependencies": {
-		"@prisma/client": "^2.21.2",
-		"@sendgrid/mail": "^7.4.2",
-		"bcryptjs": "^2.4.3",
-		"eslint-config-airbnb-base": "^14.2.1",
-		"faker": "^5.5.3",
-		"graphql-yoga": "^1.18.3",
-		"jsonwebtoken": "^8.5.1",
-		"uuidv4": "^6.2.7",
-		"yup": "^0.32.9"
-	},
-	"devDependencies": {
-		"@graphql-cli/codegen": "^1.17.22",
-		"@graphql-codegen/schema-ast": "^1.18.1",
-		"@graphql-codegen/typescript-resolvers": "^1.19.0",
-		"@typescript-eslint/eslint-plugin": "^4.22.0",
-		"@typescript-eslint/parser": "^4.22.0",
-		"eslint": "^7.23.0",
-		"eslint-plugin-import": "^2.22.1",
-		"husky": "^6.0.0",
-		"prettier": "^2.2.1",
-		"prisma": "2.20.1",
-		"tslint": "^6.1.3",
-		"typescript": "^4.2.3"
-	}
+  "name": "graphql-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.ts",
+    "start:dev": "tsc && nodemon src/index.ts",
+    "lint": "eslint  '**/*.ts'",
+    "lint:fix": "eslint '**/*.ts' --fix",
+    "preety": "prettier --write --config .prettierrc.json '**/*.ts'",
+    "analyze-code": "npm run preety && npm run lint:fix && npm run lint",
+    "codegen": "graphql-codegen --project database",
+    "prepare": "husky install && npx husky add .husky/pre-commit 'npm run analyze-code'",
+    "build": "tsc",
+    "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.21.2",
+    "@sendgrid/mail": "^7.4.2",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "es6-promisify": "^7.0.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "faker": "^5.5.3",
+    "graphql-yoga": "^1.18.3",
+    "imagekit": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "stream-to-buffer": "^0.1.0",
+    "stripe": "^8.191.0",
+    "uuidv4": "^6.2.7",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@graphql-cli/codegen": "^1.17.22",
+    "@graphql-codegen/schema-ast": "^1.18.1",
+    "@graphql-codegen/typescript-resolvers": "^1.19.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^6.0.0",
+    "prettier": "^2.2.1",
+    "prisma": "2.20.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.2.3"
+  }
 }

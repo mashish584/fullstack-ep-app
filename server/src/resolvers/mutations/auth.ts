@@ -4,14 +4,15 @@ import jwt from "jsonwebtoken";
 
 import { sendMail } from "../../utils/sendGrid";
 
-import { signupPayload, contextType, authPayload } from "../../types";
-import { createUserValidation } from "../validations/auth";
+import { signupPayload, contextType, authPayload, User } from "../../types";
+import { createUserValidation, updateProfileValidation } from "../validations/auth";
+import { getUserId, S2B } from "../../utils";
+import { upload_on_imagekit } from "../../middlewares/upload";
 
 export const createUser = {
   validation: createUserValidation,
   resolve: async (parent, args, { prisma, request }: contextType, info): Promise<signupPayload> => {
     // TODO: Check for email or username existence in records throw error if already in records
-
     const isUsernameExist = await prisma.user.findFirst({
       where: {
         username: args.data.username,
@@ -60,6 +61,42 @@ export const createUser = {
     return {
       message: "Your account successfully created.We've send you a mail for account verification",
     };
+  },
+};
+
+export const updateProfile = {
+  validation: updateProfileValidation,
+  resolve: async (parent, args, { prisma, request }: contextType, info): Promise<User> => {
+    // TODO: Check for authentication
+    const user = getUserId(request);
+
+    const upload = await args.data.profile;
+
+    // Profile picture upload
+    if (upload) {
+      if (!upload.mimetype.includes("image")) throw new Error("Invalid Upload");
+
+      const buffer = await S2B(upload.createReadStream());
+      const { url } = await upload_on_imagekit(buffer, upload.filename);
+      args.data.profile = url;
+    }
+
+    const updateDataMutation = {};
+
+    for (const key in args.data) {
+      if (args.data[key]) {
+        updateDataMutation[key] = {
+          set: args.data[key],
+        };
+      }
+    }
+
+    return prisma.user.update({
+      data: updateDataMutation,
+      where: {
+        id: user.id,
+      },
+    });
   },
 };
 

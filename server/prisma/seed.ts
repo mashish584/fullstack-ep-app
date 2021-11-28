@@ -5,6 +5,11 @@ const prisma = new PrismaClient();
 
 const categories = ["Tailgating", "Outdoor", "House", "Inaugration", "Match"];
 
+type Media = {
+  link: string;
+  thumbnail: string;
+};
+
 type Event = {
   title: string;
   description: string;
@@ -12,6 +17,7 @@ type Event = {
   location: { lat: number; lng: number; address: string };
   category: string[];
   eventTimestamp: string;
+  medias: Media[];
 };
 
 type User = {
@@ -40,6 +46,19 @@ function generateRandomNumber(length: number) {
   };
 }
 
+const generateMedias = (count: number) => {
+  const medias: Media[] = [];
+  for (let i = 0; i < count; i++) {
+    medias.push({
+      link: "https://ik.imagekit.io/imashish/ep2/pexels-sebastian-ervi-1763075_QllOREqfx.jpg",
+      thumbnail:
+        "https://ik.imagekit.io/imashish/tr:n-media_library_thumbnail/ep2/pexels-sebastian-ervi-1763075_QllOREqfx.jpg",
+    });
+  }
+
+  return medias;
+};
+
 const geneareEvents = (count: number) => {
   const events: Event[] = [];
 
@@ -57,6 +76,7 @@ const geneareEvents = (count: number) => {
       },
       eventTimestamp: Math.round(Math.random() * 5) > 2 ? faker.date.future() : faker.date.past(),
       category,
+      medias: generateMedias(3),
     });
   }
 
@@ -94,7 +114,7 @@ async function seed() {
         password,
         events: {
           create: events.map(({
-            title, description, price, eventTimestamp, category, location,
+            title, description, price, eventTimestamp, category, location, medias,
           }: Event) => ({
             title,
             description,
@@ -102,6 +122,11 @@ async function seed() {
             eventTimestamp,
             location,
             category,
+            medias: {
+              create: medias.map((media: Media) => ({
+                ...media,
+              })),
+            },
           })),
         },
       },
@@ -118,4 +143,4 @@ seed()
     await prisma.$disconnect();
   });
 
-// export default seed;
+export default seed;

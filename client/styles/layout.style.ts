@@ -5,9 +5,9 @@ import { breakPoints } from "./util.style";
 export const Container = styled.div<{ ph?: number }>`
 	background: ${({ theme }) => theme.colors.white};
 	height: 100%;
-	padding: ${({ ph }) => `0 ${ph}px`};
+	padding: ${({ ph }) => `0 ${ph || 0}px`};
 	@media screen and (max-width: ${breakPoints.sm}) {
-		padding: ${({ ph }) => `0 ${ph ? 22 : 0}px`};
+		padding: ${({ ph }) => "0"};
 	}
 `;
 

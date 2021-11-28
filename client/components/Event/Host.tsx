@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 
 import { EventHostContainer } from "../../styles/event.style";
 
@@ -13,7 +12,7 @@ const Host: React.FC<HostProps> = (props) => {
 	return (
 		<EventHostContainer className="host__info">
 			<div className="profile_image">
-				<Image src={props.src} width={"100%"} height={"100%"} layout="fixed" />
+				<img src={props.src} width={"100%"} height={"100%"} />
 			</div>
 			<div>
 				<h4>{props.username}</h4>

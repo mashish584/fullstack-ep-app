@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { GraphQLServer } from "graphql-yoga";
+import cookieParser from "cookie-parser";
 import { resolvers } from "./resolvers";
 import { yupMutationMiddleware } from "./middlewares/yup_mutation";
 
@@ -22,14 +23,22 @@ const server = new GraphQLServer({
   },
 });
 
+server.express.use(cookieParser());
+
 server.start(
   {
     cors: {
       credentials: true,
       origin: "http://localhost:3000",
     },
+    uploads: {
+      maxFileSize: 25000000,
+      maxFieldSize: 25000000,
+      maxFiles: 5,
+    },
   },
-  ({ port }) => console.log(`
+  ({ port }) =>
+    console.log(`
       Server is running on port ${port} 🚀
       Run npx prisma studio for viewing records in interactive table
     `),

@@ -14,6 +14,7 @@ export const createEventValidation = yup.object().shape({
     .required("Please provide event time.")
     .test("validate-time", "Event timestamp is not valid.", (value) => new Date(value).getTime() > 0),
   price: yup.number().test("is-decimal", "invalid decimal", (value) => {
+    if (value === 0) return true;
     const regex = /^\d*\.{1}\d*$/;
     return regex.test(value.toString());
   }),

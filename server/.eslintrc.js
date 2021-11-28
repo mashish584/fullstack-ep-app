@@ -15,6 +15,8 @@ module.exports = {
     "no-plusplus": 0,
     "no-unused-vars": ["error", { vars: "all", args: "none", ignoreRestSiblings: false }],
     "max-len": 0,
+    camelcase: 0,
+    "no-restricted-syntax": 0,
   },
   settings: {
     "import/resolver": {
